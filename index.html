@@ -4,14 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Barbearia do Marlon</title>
-
-    <!-- Tailwind CSS -->
     <link
-      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
       rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
     />
-
-    <!-- Font Awesome -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -19,69 +15,72 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <style>
+      .carousel {
+        overflow: hidden;
+        position: relative;
+      }
+
+      .carousel-wrapper {
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+      .carousel-wrapper::-webkit-scrollbar {
+        display: none;
+      }
+
+      .carousel-wrapper {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+        height: 480px; /* altura maior */
+        scroll-behavior: smooth;
+        scroll-snap-type: x mandatory;
+        overflow-x: auto;
+      }
+      .carousel-card {
+        flex: 0 0 420px; /* largura maior */
+        height: 440px; /* altura maior */
+        padding: 16px;
+        border: 1px solid #ccc;
+        margin: 0 16px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+        background: #fff;
+        scroll-snap-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+      }
+
+      .carousel-card img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        border-radius: 8px 8px 0 0;
+        margin-bottom: 10px;
+        padding: 0;
+        display: block;
+      }
+      .carousel-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+        z-index: 2;
+      }
+      .carousel-arrow.left {
+        left: 10px;
+      }
+      .carousel-arrow.right {
+        right: 10px;
+      }
+    </style>
   </head>
-  <body class="bg-gray-100 text-gray-800">
-    <!-- Header -->
-    <header
-      class="h-screen bg-cover bg-center relative"
-      style="
-        background-image: url('https://images.unsplash.com/photo-1576669230949-94c4c44916df?auto=format&fit=crop&w=2070&q=80');
-      "
-    >
-      <div class="absolute inset-0 bg-black opacity-60"></div>
-      <div
-        class="relative z-10 flex flex-col justify-center items-center text-white text-center h-full px-4"
-      >
-        <h1 class="text-5xl font-bold mb-4">Barbearia do Marlon</h1>
-        <p class="text-xl mb-8">O melhor corte, a melhor experiência.</p>
-        <a
-          href="#"
-          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded"
-          >Agende seu corte</a
-        >
-      </div>
-    </header>
-
-    <!-- Sobre nós -->
-    <section class="py-12 bg-white text-center">
-      <div class="max-w-3xl mx-auto px-4">
-        <h2 class="text-3xl font-bold mb-4">Sobre a Barbearia</h2>
-        <p>
-          A Barbearia do Marlon nasceu com o propósito de oferecer mais do que
-          cortes de cabelo: criamos experiências. Venha nos visitar e descubra
-          porque somos referência em estilo e atendimento!
-        </p>
-      </div>
-    </section>
-
-    <!-- Contato -->
-    <section class="bg-gray-100 py-12 text-center">
-      <div class="max-w-2xl mx-auto px-4">
-        <h2 class="text-3xl font-bold mb-4">Entre em Contato</h2>
-        <p class="mb-4">
-          Fale conosco pelo WhatsApp, redes sociais ou use nosso assistente
-          virtual no canto inferior direito.
-        </p>
-        <div class="flex justify-center space-x-6 text-2xl">
-          <a href="#" class="text-blue-600 hover:text-blue-800"
-            ><i class="fab fa-facebook-square"></i
-          ></a>
-          <a href="#" class="text-pink-500 hover:text-pink-700"
-            ><i class="fab fa-instagram"></i
-          ></a>
-          <a href="#" class="text-green-500 hover:text-green-700"
-            ><i class="fab fa-whatsapp"></i
-          ></a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white text-center py-6">
-      <p>&copy; 2024 Barbearia do Marlon. Todos os direitos reservados.</p>
-    </footer>
-
-    <!-- Chatbot Dialogflow -->
+  <body class="bg-gray-100">
     <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
     <df-messenger
       intent="WELCOME"
@@ -89,5 +88,237 @@
       agent-id="006ade97-2a42-4677-ba60-e364f70d635c"
       language-code="pt-br"
     ></df-messenger>
+
+    <!-- Header/Landing Page -->
+    <header
+      class="bg-cover bg-center h-screen relative"
+      style="
+        background-image: url('https://images.unsplash.com/photo-1576669230949-94c4c44916df?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80');
+      "
+    >
+      <div class="absolute inset-0 bg-black opacity-60"></div>
+      <div
+        class="container mx-auto text-center text-white relative z-10 h-full flex flex-col justify-center items-center"
+      >
+        <h1 class="text-5xl font-bold mb-4">Barbearia do Marlon</h1>
+        <p class="text-xl mb-8">O melhor corte, a melhor experiência.</p>
+        <a
+          href="#"
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          >Agende seu corte</a
+        >
+      </div>
+    </header>
+
+    <!-- Main/Carousel de Serviços -->
+    <main class="container mx-auto py-12">
+      <section class="mb-8">
+        <h2 class="text-3xl font-bold text-center mb-6">Nossos Serviços</h2>
+        <div class="carousel">
+          <button
+            class="carousel-arrow left"
+            onclick="moveCarousel('servicos', -1)"
+          >
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <div class="carousel-wrapper" id="servicos-carousel">
+            <div class="carousel-card">
+              <img
+                src="https://images.pexels.com/photos/897262/pexels-photo-897262.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                alt="Corte Moderno"
+              />
+              <h3 class="text-xl font-semibold">Corte Moderno</h3>
+              <p>Um corte estiloso para o dia a dia.</p>
+              <p class="font-bold">R$ 50,00</p>
+            </div>
+            <div class="carousel-card">
+              <img
+                src="https://images.pexels.com/photos/1707828/pexels-photo-1707828.jpeg?auto=compress&fit=crop&w=800&q=80"
+                alt="Barba Modelada"
+              />
+              <h3 class="text-xl font-semibold">Barba Modelada</h3>
+              <p>Deixe sua barba impecável.</p>
+              <p class="font-bold">R$ 30,00</p>
+            </div>
+            <div class="carousel-card">
+              <img
+                src="https://images.pexels.com/photos/1813272/pexels-photo-1813272.jpeg?auto=compress&fit=crop&w=800&q=80"
+                alt="Corte Clássico"
+              />
+              <h3 class="text-xl font-semibold">Corte Clássico</h3>
+              <p>O tradicional nunca sai de moda.</p>
+              <p class="font-bold">R$ 45,00</p>
+            </div>
+            <div class="carousel-card">
+              <img
+                src="https://images.pexels.com/photos/3992873/pexels-photo-3992873.jpeg?auto=compress&fit=crop&w=800&q=80"
+                alt="Corte Infantil"
+              />
+              <h3 class="text-xl font-semibold">Corte Infantil</h3>
+              <p>Especial para os pequenos.</p>
+              <p class="font-bold">R$ 35,00</p>
+            </div>
+            <div class="carousel-card">
+              <img
+                src="https://images.pexels.com/photos/3993449/pexels-photo-3993449.jpeg?auto=compress&fit=crop&w=800&q=80"
+                alt="Sobrancelha"
+              />
+              <h3 class="text-xl font-semibold">Sobrancelha</h3>
+              <p>Design de sobrancelha masculino.</p>
+              <p class="font-bold">R$ 20,00</p>
+            </div>
+            <div class="carousel-card">
+              <img
+                src="https://images.pexels.com/photos/3993448/pexels-photo-3993448.jpeg?auto=compress&fit=crop&w=800&q=80"
+                alt="Corte Degradê"
+              />
+              <h3 class="text-xl font-semibold">Corte Degradê</h3>
+              <p>O degradê perfeito para seu estilo.</p>
+              <p class="font-bold">R$ 55,00</p>
+            </div>
+            <div class="carousel-card">
+              <img
+                src="https://images.pexels.com/photos/1813273/pexels-photo-1813273.jpeg?auto=compress&fit=crop&w=800&q=80"
+                alt="Barba Completa"
+              />
+              <h3 class="text-xl font-semibold">Barba Completa</h3>
+              <p>Barba feita com navalha e toalha quente.</p>
+              <p class="font-bold">R$ 40,00</p>
+            </div>
+            <div class="carousel-card">
+              <img
+                src="https://images.pexels.com/photos/1707830/pexels-photo-1707830.jpeg?auto=compress&fit=crop&w=800&q=80"
+                alt="Corte Social"
+              />
+              <h3 class="text-xl font-semibold">Corte Social</h3>
+              <p>Elegância para todas as ocasiões.</p>
+              <p class="font-bold">R$ 50,00</p>
+            </div>
+            <div class="carousel-card">
+              <img
+                src="https://images.pexels.com/photos/1813275/pexels-photo-1813275.jpeg?auto=compress&fit=crop&w=800&q=80"
+                alt="Pigmentação"
+              />
+              <h3 class="text-xl font-semibold">Pigmentação</h3>
+              <p>Realce o visual com pigmentação capilar.</p>
+              <p class="font-bold">R$ 80,00</p>
+            </div>
+            <div class="carousel-card">
+              <img
+                src="https://images.pexels.com/photos/3992874/pexels-photo-3992874.jpeg?auto=compress&fit=crop&w=800&q=80"
+                alt="Hidratação"
+              />
+              <h3 class="text-xl font-semibold">Hidratação</h3>
+              <p>Tratamento completo para seus fios.</p>
+              <p class="font-bold">R$ 35,00</p>
+            </div>
+            <div class="carousel-card">
+              <img
+                src="https://images.pexels.com/photos/1813274/pexels-photo-1813274.jpeg?auto=compress&fit=crop&w=800&q=80"
+                alt="Corte Navalhado"
+              />
+              <h3 class="text-xl font-semibold">Corte Navalhado</h3>
+              <p>Acabamento perfeito com navalha.</p>
+              <p class="font-bold">R$ 60,00</p>
+            </div>
+            <div class="carousel-card">
+              <img
+                src="https://images.pexels.com/photos/3993447/pexels-photo-3993447.jpeg?auto=compress&fit=crop&w=800&q=80"
+                alt="Relaxamento"
+              />
+              <h3 class="text-xl font-semibold">Relaxamento</h3>
+              <p>Deixe o cabelo mais macio e alinhado.</p>
+              <p class="font-bold">R$ 70,00</p>
+            </div>
+            <div class="carousel-card">
+              <img
+                src="https://images.pexels.com/photos/3993446/pexels-photo-3993446.jpeg?auto=compress&fit=crop&w=800&q=80"
+                alt="Corte Militar"
+              />
+              <h3 class="text-xl font-semibold">Corte Militar</h3>
+              <p>Praticidade e estilo para o dia a dia.</p>
+              <p class="font-bold">R$ 40,00</p>
+            </div>
+          </div>
+          <button
+            class="carousel-arrow right"
+            onclick="moveCarousel('servicos', 1)"
+          >
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="text-3xl font-bold text-center mb-6">
+          História da Barbearia
+        </h2>
+        <div class="text-center">
+          <p>
+            A Barbearia do Marlon nasceu de um sonho de trazer um espaço único
+            para homens que valorizam um bom corte e um ambiente acolhedor.
+            Fundada em [ano], rapidamente se tornou um ponto de referência na
+            cidade...
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+      <div class="container mx-auto text-center">
+        <p>&copy; 2024 Barbearia do Marlon. Todos os direitos reservados.</p>
+        <p>Endereço: Rua Exemplo, 123 - Centro</p>
+        <p>Telefone: (11) 99999-9999</p>
+        <div class="mt-4">
+          <a href="#" class="text-gray-300 hover:text-white mr-4"
+            ><i class="fab fa-facebook-square fa-2x"></i
+          ></a>
+          <a href="#" class="text-gray-300 hover:text-white mr-4"
+            ><i class="fab fa-instagram fa-2x"></i
+          ></a>
+          <a href="#" class="text-gray-300 hover:text-white"
+            ><i class="fab fa-whatsapp fa-2x"></i
+          ></a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Corrige a rotação manual
+      function moveCarousel(carouselId, direction) {
+        const carouselWrapper = document.getElementById(
+          `${carouselId}-carousel`
+        );
+        const card = carouselWrapper.querySelector(".carousel-card");
+        const cardWidth = card.offsetWidth + 32; // 32 = margin dos lados
+        carouselWrapper.scrollBy({
+          left: cardWidth * direction,
+          behavior: "smooth",
+        });
+      }
+
+      // Rotação automática
+      function autoRotateCarousel(carouselId) {
+        const carouselWrapper = document.getElementById(
+          `${carouselId}-carousel`
+        );
+        const cards = carouselWrapper.querySelectorAll(".carousel-card");
+        let currentIndex = 0;
+        setInterval(() => {
+          currentIndex = (currentIndex + 1) % cards.length;
+          const cardWidth = cards[0].offsetWidth + 32;
+          carouselWrapper.scrollTo({
+            left: cardWidth * currentIndex,
+            behavior: "smooth",
+          });
+        }, 3500); // Troca a cada 3,5 segundos
+      }
+
+      // Inicia rotação automática ao carregar
+      window.onload = function () {
+        autoRotateCarousel("servicos");
+      };
+    </script>
   </body>
 </html>
